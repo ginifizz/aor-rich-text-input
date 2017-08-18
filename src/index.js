@@ -8,6 +8,7 @@ require('./RichTextInput.css');
 class RichTextInput extends Component {
     componentDidMount() {
         const {
+            formats,
             input: {
                 value,
             },
@@ -15,6 +16,7 @@ class RichTextInput extends Component {
         } = this.props;
 
         this.quill = new Quill(this.divRef, {
+            formats: { formats },
             modules: { toolbar },
             theme: 'snow',
         });
@@ -54,11 +56,35 @@ RichTextInput.propTypes = {
         PropTypes.array,
         PropTypes.bool,
     ]),
+    formats: PropTypes.array,
 };
 
 RichTextInput.defaultProps = {
     addField: true,
     addLabel: true,
+    formats: [
+        'background',
+        'bold',
+        'color',
+        'font',
+        'code',
+        'italic',
+        'link',
+        'size',
+        'strike',
+        'script',
+        'underline',
+        'blockquote',
+        'header',
+        'indent',
+        'list',
+        'align',
+        'direction',
+        'code-block',
+        'formula',
+        'image',
+        'video'
+    ],
     options: {},
     record: {},
     toolbar: true,
